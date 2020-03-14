@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Bitcoin Price</string>
     <string name="getprice">Get Price 💵</string>
+    <string name="getprice_dialog">Getting Updates On Prices....... 💵</string>
     <string name="about">About</string>
     <string name="Donate">Donate</string>
     <string name="URL_BITCOIN_API_URL">https://api.coindesk.com/v1/bpi/currentprice.json</string>
+    <string name="onFailure">Update Failed.</string>
 </resources>
