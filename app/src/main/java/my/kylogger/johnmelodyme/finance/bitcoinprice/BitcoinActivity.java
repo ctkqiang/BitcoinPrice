@@ -13,6 +13,7 @@ import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -28,7 +29,6 @@ public class BitcoinActivity extends AppCompatActivity {
     private Button GET_BITCOIN_PRICE;
     private TextView PRICE;
 
-    // TODO  DeclarationInit();
     private void DeclarationInit() {
         progressDialog = new ProgressDialog(BitcoinActivity.this);
         okHttpClient = new OkHttpClient();
@@ -37,7 +37,6 @@ public class BitcoinActivity extends AppCompatActivity {
     }
 
     @Override
-    // TODO onCreate
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -45,7 +44,6 @@ public class BitcoinActivity extends AppCompatActivity {
         DeclarationInit();
         progressDialog.setMessage(getResources().getString(R.string.getprice_dialog));
 
-        // TODO GET_BITCOIN_PRICE;
         GET_BITCOIN_PRICE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +53,6 @@ public class BitcoinActivity extends AppCompatActivity {
                         .build();
                 progressDialog.show();
 
-                // TODO OKHTTP:
                 okHttpClient.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -68,40 +65,47 @@ public class BitcoinActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        progressDialog.dismiss();
-                        try {
-                            StringBuilder builder = new StringBuilder();
-                            JSONObject jsonObject = new JSONObject();
-                            JSONObject timeObject = jsonObject.getJSONObject("time");
-                            JSONObject bpiObject = jsonObject.getJSONObject("bpi");
-                            JSONObject usdObject = bpiObject.getJSONObject("USD");
-                            JSONObject gbpObject = bpiObject.getJSONObject("GBP");
-                            JSONObject euroObject = bpiObject.getJSONObject("EUR");
-                            builder.append(timeObject.getString("updated")).append("\n\n");
-                            builder.append(usdObject.getString("rate")).append("$").append("\n");
-                            builder.append(gbpObject.getString("rate")).append("£").append("\n");
-                            builder.append(euroObject.getString("rate")).append("€").append("\n");
-                            PRICE.setText(builder.toString());
-                            Log.d(TAG, "parseBpiResponse:" + builder.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        final String body = response.body().string();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialog.dismiss();
+                                parseBpiResponse(body);
+                            }
+                        });
                     }
                 });
             }
         });
     }
 
+    public void parseBpiResponse(String body) {
+        try {
+            StringBuilder builder = new StringBuilder();
+            JSONObject jsonObject = new JSONObject(body);
+            JSONObject timeObject = jsonObject.getJSONObject("time");
+            JSONObject bpiObject = jsonObject.getJSONObject("bpi");
+            JSONObject usdObject = bpiObject.getJSONObject("USD");
+            JSONObject gbpObject = bpiObject.getJSONObject("GBP");
+            JSONObject euroObject = bpiObject.getJSONObject("EUR");
+            builder.append(timeObject.getString("updated")).append("\n\n");
+            builder.append(usdObject.getString("rate")).append("$").append("\n");
+            builder.append(gbpObject.getString("rate")).append("£").append("\n");
+            builder.append(euroObject.getString("rate")).append("€").append("\n");
+            PRICE.setText(builder.toString());
+            Log.d(TAG, "parseBpiResponse:" + builder.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
-    // TODO onCreateOptionsMenu
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    // TODO onOptionsItemSelected
     public boolean onOptionsItemSelected(MenuItem item) {
        // if (item.getItemId() == R.id.action_load) {
        // }

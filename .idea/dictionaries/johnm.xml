@@ -3,10 +3,11 @@
     <words>
       <w>applogo</w>
       <w>bitcoinprice</w>
+      <w>buttonnripple</w>
+      <w>cprice</w>
       <w>getprice</w>
       <w>johnmelodyme</w>
       <w>kylogger</w>
-      <w>okhttp</w>
     </words>
   </dictionary>
 </component>
