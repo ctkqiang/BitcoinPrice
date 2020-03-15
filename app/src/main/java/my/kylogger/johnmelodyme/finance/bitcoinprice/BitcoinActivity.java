@@ -13,7 +13,6 @@ import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -24,8 +23,8 @@ import okhttp3.Response;
 public class BitcoinActivity extends AppCompatActivity {
     public static final String TAG = "BTC_PRICE";
     public static final String URL_API_BITCOIN = "https://api.coindesk.com/v1/bpi/currentprice.json";
-    private OkHttpClient okHttpClient;
-    private ProgressDialog progressDialog;
+    private static OkHttpClient okHttpClient;
+    private static ProgressDialog progressDialog;
     private Button GET_BITCOIN_PRICE;
     private TextView PRICE;
 
@@ -89,9 +88,9 @@ public class BitcoinActivity extends AppCompatActivity {
             JSONObject gbpObject = bpiObject.getJSONObject("GBP");
             JSONObject euroObject = bpiObject.getJSONObject("EUR");
             builder.append(timeObject.getString("updated")).append("\n\n");
-            builder.append(usdObject.getString("rate")).append("$").append("\n");
-            builder.append(gbpObject.getString("rate")).append("£").append("\n");
-            builder.append(euroObject.getString("rate")).append("€").append("\n");
+            builder.append(usdObject.getString("rate")).append(" $USD").append("\n");
+            builder.append(gbpObject.getString("rate")).append(" £GBP").append("\n");
+            builder.append(euroObject.getString("rate")).append(" €EURO").append("\n");
             PRICE.setText(builder.toString());
             Log.d(TAG, "parseBpiResponse:" + builder.toString());
         } catch (JSONException e) {
