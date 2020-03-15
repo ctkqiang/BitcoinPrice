@@ -57,7 +57,7 @@ public class BitcoinActivity extends AppCompatActivity {
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
                         Toast.makeText(BitcoinActivity.this,
                                 getResources()
-                                        .getString(R.string.onFailure) + e.getMessage(),
+                                        .getString(R.string.onFailure),
                                 Toast.LENGTH_SHORT)
                                 .show();
                     }
