@@ -14,6 +14,8 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -106,8 +108,12 @@ public class BitcoinActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       // if (item.getItemId() == R.id.action_load) {
-       // }
+        if (item.getItemId() == R.id.about) {
+            new SweetAlertDialog(BitcoinActivity.this)
+                    .setTitleText(getResources().getString(R.string.message))
+                    .show();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

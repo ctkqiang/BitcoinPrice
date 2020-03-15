@@ -34,4 +34,6 @@ dependencies {
 
     implementation 'org.fabiomsr:moneytextview:1.1.0'
     implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 }
