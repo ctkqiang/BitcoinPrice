@@ -14,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,6 +29,7 @@ public class BitcoinActivity extends AppCompatActivity {
     private Button GET_BITCOIN_PRICE;
     private TextView PRICE;
 
+    // TODO DeclarationInit()
     private void DeclarationInit() {
         progressDialog = new ProgressDialog(BitcoinActivity.this);
         okHttpClient = new OkHttpClient();
@@ -38,6 +38,7 @@ public class BitcoinActivity extends AppCompatActivity {
     }
 
     @Override
+    // TODO onCreate
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -45,6 +46,7 @@ public class BitcoinActivity extends AppCompatActivity {
         DeclarationInit();
         progressDialog.setMessage(getResources().getString(R.string.getprice_dialog));
 
+        // TODO GET_BITCOIN_PRICE
         GET_BITCOIN_PRICE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +56,7 @@ public class BitcoinActivity extends AppCompatActivity {
                         .build();
                 progressDialog.show();
 
+                // TODO okHttpCLient:
                 okHttpClient.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -65,6 +68,7 @@ public class BitcoinActivity extends AppCompatActivity {
                     }
 
                     @Override
+                    // TODO onResponse:
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         final String body = response.body().string();
                         runOnUiThread(new Runnable() {
@@ -80,6 +84,7 @@ public class BitcoinActivity extends AppCompatActivity {
         });
     }
 
+    // TODO  parseBpiResponse()
     public void parseBpiResponse(String body) {
         try {
             StringBuilder builder = new StringBuilder();
@@ -102,12 +107,14 @@ public class BitcoinActivity extends AppCompatActivity {
     }
 
     @Override
+    // TODO  onCreateOptionsMenu()
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
+    // TODO onOptionsItemSelected()
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.about) {
             new SweetAlertDialog(BitcoinActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
