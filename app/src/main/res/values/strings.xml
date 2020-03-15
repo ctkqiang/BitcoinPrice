@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">💵 ₿itcoin Price 💰</string>
+    <string name="app_name">💵 Bitcoin Price 💰</string>
     <string name="getprice">Get Price 💵</string>
     <string name="getprice_dialog">Getting Updates On Prices......💵</string>
     <string name="about">About ℹ️</string>

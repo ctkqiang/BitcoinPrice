@@ -1,5 +1,27 @@
 package my.kylogger.johnmelodyme.finance.bitcoinprice;
 
+
+/**
+ * Copyright 2020 © John Melody Melissa
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @Author : John Melody Melissa
+ * @Copyright: John Melody Melissa  © Copyright 2020
+ * @INPIREDBYGF : Sin Dee <3
+ * @Class: NetworkActivity.class
+ */
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -24,8 +46,8 @@ import okhttp3.Response;
 public class BitcoinActivity extends AppCompatActivity {
     public static final String TAG = "BTC_PRICE";
     public static final String URL_API_BITCOIN = "https://api.coindesk.com/v1/bpi/currentprice.json";
-    private static OkHttpClient okHttpClient;
-    private static ProgressDialog progressDialog;
+    public static OkHttpClient okHttpClient;
+    public static ProgressDialog progressDialog;
     private Button GET_BITCOIN_PRICE;
     private TextView PRICE;
 
@@ -102,7 +124,7 @@ public class BitcoinActivity extends AppCompatActivity {
             builder.append(gbpObject.getString("rate")).append(" £GBP \uD83D\uDCB5").append("\n");
             builder.append(euroObject.getString("rate")).append(" €EURO \uD83D\uDCB5").append("\n");
             PRICE.setText(builder.toString());
-            Log.d(TAG, "parseBpiResponse:" + builder.toString());
+            Log.d(TAG, "parseBpiResponse:" + builder.toString() + "\n\n");
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d(TAG, "parseBpiResponse: " + e);
