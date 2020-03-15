@@ -6,5 +6,5 @@
     <string name="Donate">Donate 💰</string>
     <string name="URL_BITCOIN_API_URL">https://api.coindesk.com/v1/bpi/currentprice.json</string>
     <string name="onFailure">Update Failed.</string>
-    <string name="message"> 💻 Developed By <a href="https://johnmelodyme.github.io/"> John Melody Me </a></string>
+    <string name="message"> 💻 Developed By <br/> <a href="https://johnmelodyme.github.io/"> John Melody Me </a></string>
 </resources>
