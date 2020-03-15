@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Bitcoin Price</string>
+    <string name="app_name">₿itcoin Price 💰</string>
     <string name="getprice">Get Price 💵</string>
-    <string name="getprice_dialog">Getting Updates On Prices....... 💵</string>
-    <string name="about">About</string>
-    <string name="Donate">Donate</string>
+    <string name="getprice_dialog">Getting Updates On Prices......💵</string>
+    <string name="about">About ℹ️</string>
+    <string name="Donate">Donate 💰</string>
     <string name="URL_BITCOIN_API_URL">https://api.coindesk.com/v1/bpi/currentprice.json</string>
     <string name="onFailure">Update Failed.</string>
-    <string name="message">Developed by <a href="https://johnmelodyme.github.io/"> John Melody Me </a></string>
+    <string name="message"> 💻 Developed By <a href="https://johnmelodyme.github.io/"> John Melody Me </a></string>
 </resources>

@@ -97,6 +97,7 @@ public class BitcoinActivity extends AppCompatActivity {
             Log.d(TAG, "parseBpiResponse:" + builder.toString());
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.d(TAG, "parseBpiResponse: " + e);
         }
     }
 
@@ -107,13 +108,15 @@ public class BitcoinActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.about) {
-            new SweetAlertDialog(BitcoinActivity.this)
-                    .setTitleText(getResources().getString(R.string.message))
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.about) {
+            new SweetAlertDialog(BitcoinActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                    .setTitleText(getResources().getString(R.string.about))
+                    .setContentText(getResources().getString(R.string.message))
+                    .setCustomImage(R.mipmap.applogo)
                     .show();
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(menuItem);
     }
 }
