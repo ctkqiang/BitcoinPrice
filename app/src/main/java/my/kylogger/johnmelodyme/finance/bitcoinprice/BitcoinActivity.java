@@ -55,6 +55,7 @@ public class BitcoinActivity extends AppCompatActivity {
                         .url(URL_API_BITCOIN)
                         .build();
                 progressDialog.show();
+                Log.d(TAG, BitcoinActivity.class.getSimpleName() + " " + getResources().getString(R.string.getprice_dialog));
 
                 // TODO okHttpCLient:
                 okHttpClient.newCall(request).enqueue(new Callback() {
@@ -65,6 +66,7 @@ public class BitcoinActivity extends AppCompatActivity {
                                         .getString(R.string.onFailure),
                                 Toast.LENGTH_SHORT)
                                 .show();
+                        Log.d(TAG, "onFailure: " + getResources().getString(R.string.onFailure));
                     }
 
                     @Override
@@ -76,6 +78,7 @@ public class BitcoinActivity extends AppCompatActivity {
                             public void run() {
                                 progressDialog.dismiss();
                                 parseBpiResponse(body);
+                                Log.d(TAG, "run: ");
                             }
                         });
                     }
@@ -94,10 +97,10 @@ public class BitcoinActivity extends AppCompatActivity {
             JSONObject usdObject = bpiObject.getJSONObject("USD");
             JSONObject gbpObject = bpiObject.getJSONObject("GBP");
             JSONObject euroObject = bpiObject.getJSONObject("EUR");
-            builder.append(timeObject.getString("updated")).append("\n\n");
-            builder.append(usdObject.getString("rate")).append(" $USD").append("\n");
-            builder.append(gbpObject.getString("rate")).append(" £GBP").append("\n");
-            builder.append(euroObject.getString("rate")).append(" €EURO").append("\n");
+            builder.append(timeObject.getString("updated")).append("⏱️").append("\n\n");
+            builder.append(usdObject.getString("rate")).append(" $USD \uD83D\uDCB5").append("\n");
+            builder.append(gbpObject.getString("rate")).append(" £GBP \uD83D\uDCB5").append("\n");
+            builder.append(euroObject.getString("rate")).append(" €EURO \uD83D\uDCB5").append("\n");
             PRICE.setText(builder.toString());
             Log.d(TAG, "parseBpiResponse:" + builder.toString());
         } catch (JSONException e) {
@@ -122,7 +125,10 @@ public class BitcoinActivity extends AppCompatActivity {
                     .setContentText(getResources().getString(R.string.message))
                     .setCustomImage(R.mipmap.applogo)
                     .show();
+            Log.d(TAG, "onOptionsItemSelected: " + getResources().getString(R.string.message));
             return true;
+        } else {
+            Log.d(TAG, "onOptionsItemSelected: " + "" );
         }
         return super.onOptionsItemSelected(menuItem);
     }
