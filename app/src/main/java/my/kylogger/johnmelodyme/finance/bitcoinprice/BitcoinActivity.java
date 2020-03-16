@@ -1,6 +1,5 @@
 package my.kylogger.johnmelodyme.finance.bitcoinprice;
 
-
 /**
  * Copyright 2020 © John Melody Melissa
  *
@@ -52,7 +51,7 @@ public class BitcoinActivity extends AppCompatActivity {
     private TextView PRICE;
 
     // TODO DeclarationInit()
-    private void DeclarationInit() {
+    public void DeclarationInit() {
         progressDialog = new ProgressDialog(BitcoinActivity.this);
         okHttpClient = new OkHttpClient();
         GET_BITCOIN_PRICE = findViewById(R.id.geBTCprice);
@@ -99,8 +98,8 @@ public class BitcoinActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
+                                Log.d(TAG, "PRICE BTC");
                                 parseBpiResponse(body);
-                                Log.d(TAG, "run: ");
                             }
                         });
                     }
